@@ -6,6 +6,7 @@
 #define IDD_MAIN                        100
 #define IDI_ADD                         101
 #define IDI_DEL                         102
+#define IDB_IMG_BASE                    103
 #define IDB_IMG_1                       103
 #define IDB_IMG_2                       104
 #define IDB_IMG_3                       105

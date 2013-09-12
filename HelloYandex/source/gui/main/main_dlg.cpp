@@ -12,6 +12,11 @@
 #include "resource/resource.h"
 #include "main_dlg.h"
 
+#include <stdlib.h> // srand, rand
+#include <time.h>
+
+LPTSTR g_lpszNames[3] = { _TEXT("Поиск"), _TEXT("Диск"), _TEXT("Деньги")};
+
 LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
     WindowIcon_Init();
@@ -19,21 +24,39 @@ LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 
 	CenterWindow();
 
-    _list.SubclassWindow(GetDlgItem(IDC_LIST));
     CButton buttonAdd = GetDlgItem(IDADD);
     CButton buttonDel = GetDlgItem(IDDEL);
 
+    buttonAdd.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_ADD, SM_CXSMICON, SM_CYSMICON));
+    buttonDel.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_DEL, SM_CXSMICON, SM_CYSMICON));
+
+    _list.SubclassWindow(GetDlgItem(IDC_LIST));
+    // Initialize with 4 columns and 5 rows
     _list.AddColumn(_TEXT("Column 1"), 0);
     _list.AddColumn(_TEXT("Column 2"), 1);
     _list.AddColumn(_TEXT("Column 3"), 2);
     _list.AddColumn(_TEXT("Column 4"), 3);
-    _list.AddItem(0, 0, _TEXT("Item 1"));
-    _list.AddItem(1, 0, _TEXT("Item 2"));
-    _list.AddItem(2, 0, _TEXT("Item 3"));
-    _list.AddItem(3, 0, _TEXT("Item 4"));
-    _list.AddItem(4, 0, _TEXT("Item 5"));
-    buttonAdd.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_ADD, SM_CXSMICON, SM_CYSMICON));
-    buttonDel.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_DEL, SM_CXSMICON, SM_CYSMICON));
+
+    // Initialize random generator
+    srand(static_cast<unsigned int>(time(NULL)));
+
+    for (int i = 0; i < 5; ++i)
+    {
+        for (int j = 0; j < 4; ++j)
+        {
+            CCustomListCtrl::Item item;
+
+            int magic = rand() % 3;
+
+            item.bText = rand() % 2;
+            item.hBmp  = LoadBitmap(_Module.GetResourceInstance(),
+                MAKEINTRESOURCE(IDB_IMG_BASE + magic));
+            item.lpszText = g_lpszNames[magic];
+
+            _list.AddItem(i, j, item);
+        }
+    }
+    _list.Update();
 
     // Force redraw to update the list
     DlgResize_UpdateLayout(0, 0);
@@ -43,10 +66,38 @@ LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 
 LRESULT CMainDlg::OnAdd(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
 {
+    int nItem = _list.GetSelectedIndex();
+
+    nItem = (-1 == nItem) ? _list.GetItemCount() : nItem + 1;
+
+    for (int j = 0; j < 4; ++j)
+    {
+        CCustomListCtrl::Item item;
+
+        int magic = rand() % 3;
+
+        item.bText = rand() % 2;
+        item.hBmp  = LoadBitmap(_Module.GetResourceInstance(),
+            MAKEINTRESOURCE(IDB_IMG_BASE + magic));
+        item.lpszText = g_lpszNames[magic];
+
+        nItem = _list.AddItem(nItem, j, item);
+    }
+    _list.Update();
+    _list.EnsureVisible(nItem, FALSE);
+
     return 0;
 }
 
 LRESULT CMainDlg::OnDelete(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
 {
+    int nItem = _list.GetSelectedIndex();
+
+    if (-1 != nItem)
+    {
+        _list.DeleteItemMy(nItem);
+        _list.Update();
+    }
+
     return 0;
 }
