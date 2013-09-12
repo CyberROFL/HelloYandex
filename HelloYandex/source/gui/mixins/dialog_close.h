@@ -11,10 +11,10 @@
 #define __GUI_MIXINS_CLOSABLE_DLG_H__
 
 template <class T>
-class CClosableDlg
+class CDialogClose
 {
 public:
-    BEGIN_MSG_MAP(CClosableDlg)
+    BEGIN_MSG_MAP(CDialogClose)
         MESSAGE_HANDLER(WM_SYSCOMMAND, OnSysCommand)
     END_MSG_MAP()
 

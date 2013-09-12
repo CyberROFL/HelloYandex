@@ -15,11 +15,11 @@
 
 class CMainDlg : public CDialogImpl<CMainDlg>,
                  public CWindowIcon<CMainDlg, IDI_MAIN>,
-                 public CClosableDlg<CMainDlg>,
+                 public CDialogClose<CMainDlg>,
                  public CDialogResize<CMainDlg>
 {
     typedef CWindowIcon<CMainDlg, IDI_MAIN> CWindowIconBase;
-    typedef CClosableDlg<CMainDlg> CClosableDlgBase;
+    typedef CDialogClose<CMainDlg> CDialogCloseBase;
     typedef CDialogResize<CMainDlg> CDialogResizeBase;
 
 public:
@@ -27,7 +27,7 @@ public:
 
 	BEGIN_MSG_MAP(CMainDlg)
 		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
-        CHAIN_MSG_MAP(CClosableDlgBase)
+        CHAIN_MSG_MAP(CDialogCloseBase)
         CHAIN_MSG_MAP(CDialogResizeBase)
 	END_MSG_MAP()
 
