@@ -229,6 +229,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="controls"
+					>
+					<File
+						RelativePath=".\source\gui\controls\custom_list.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter

@@ -12,6 +12,7 @@
 
 #include "gui/mixins/wnd_icon.h"
 #include "gui/mixins/dialog_close.h"
+#include "gui/controls/custom_list.h"
 
 class CMainDlg : public CDialogImpl<CMainDlg>,
                  public CWindowIcon<CMainDlg, IDI_MAIN>,
@@ -30,6 +31,7 @@ public:
         COMMAND_ID_HANDLER(IDDEL, OnDelete)
         CHAIN_MSG_MAP(CDialogCloseBase)
         CHAIN_MSG_MAP(CDialogResizeBase)
+        REFLECT_NOTIFICATIONS() // need for OwnerDraw
 	END_MSG_MAP()
 
     BEGIN_DLGRESIZE_MAP(CMainDlg)
@@ -41,6 +43,9 @@ public:
     LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
     LRESULT OnAdd(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
     LRESULT OnDelete(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
+
+protected:
+    CCustomListCtrl _list;
 };
 
 #endif // __GUI_MAIN_DLG_H__
