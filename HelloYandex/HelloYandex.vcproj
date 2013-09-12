@@ -250,6 +250,14 @@
 					Name="main"
 					>
 					<File
+						RelativePath=".\resource\icon\main\add.ico"
+						>
+					</File>
+					<File
+						RelativePath=".\resource\icon\main\del.ico"
+						>
+					</File>
+					<File
 						RelativePath=".\resource\icon\main\main.ico"
 						>
 					</File>

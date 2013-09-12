@@ -54,6 +54,8 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_MAIN                ICON                    "icon\\main\\main.ico"
+IDI_ADD                 ICON                    "icon\\main\\add.ico"
+IDI_DEL                 ICON                    "icon\\main\\del.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -66,8 +68,8 @@ CAPTION "Hello, Yandex!"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     CONTROL         "",IDC_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,5,5,340,166
-    PUSHBUTTON      "Добавить",IDC_ADD,4,175,100,19
-    PUSHBUTTON      "Удалить",IDC_DEL,109,175,100,19
+    PUSHBUTTON      " Добавить",IDC_ADD,4,175,100,19
+    PUSHBUTTON      " Удалить",IDC_DEL,109,175,100,19
 END
 
 
