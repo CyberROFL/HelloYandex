@@ -266,6 +266,18 @@
 						>
 					</File>
 					<File
+						RelativePath=".\resource\icon\main\img_1.bmp"
+						>
+					</File>
+					<File
+						RelativePath=".\resource\icon\main\img_2.bmp"
+						>
+					</File>
+					<File
+						RelativePath=".\resource\icon\main\img_3.bmp"
+						>
+					</File>
+					<File
 						RelativePath=".\resource\icon\main\main.ico"
 						>
 					</File>

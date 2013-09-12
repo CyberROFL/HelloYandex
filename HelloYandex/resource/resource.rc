@@ -129,6 +129,15 @@ BEGIN
     END
 END
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_IMG_1               BITMAP                  "icon\\main\\img_1.bmp"
+IDB_IMG_2               BITMAP                  "icon\\main\\img_2.bmp"
+IDB_IMG_3               BITMAP                  "icon\\main\\img_3.bmp"
 #endif    // Russian resources
 /////////////////////////////////////////////////////////////////////////////
 
