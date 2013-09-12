@@ -6,7 +6,7 @@
 #define IDD_MAIN                        100
 #define IDC_LIST                        1000
 #define IDC_ADD                         1001
-#define IDC_DELETE                      1002
+#define IDC_DEL                         1002
 
 // Next default values for new objects
 // 

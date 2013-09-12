@@ -16,7 +16,8 @@
 class CMainDlg : public CDialogImpl<CMainDlg>,
                  public CWindowIcon<CMainDlg, IDI_MAIN>,
                  public CDialogClose<CMainDlg>,
-                 public CDialogResize<CMainDlg>
+                 public CDialogResize<CMainDlg>,
+                 public CWinDataExchange<CMainDlg>
 {
     typedef CDialogClose<CMainDlg> CDialogCloseBase;
     typedef CDialogResize<CMainDlg> CDialogResizeBase;
@@ -33,10 +34,19 @@ public:
     BEGIN_DLGRESIZE_MAP(CMainDlg)
         DLGRESIZE_CONTROL(IDC_LIST, DLSZ_SIZE_X | DLSZ_SIZE_Y)
         DLGRESIZE_CONTROL(IDC_ADD, DLSZ_MOVE_Y)
-        DLGRESIZE_CONTROL(IDC_DELETE, DLSZ_MOVE_Y)
+        DLGRESIZE_CONTROL(IDC_DEL, DLSZ_MOVE_Y)
     END_DLGRESIZE_MAP()
 
+    BEGIN_DDX_MAP(CMainDlg)
+        DDX_CONTROL(IDC_ADD, _buttonAdd)
+        DDX_CONTROL(IDC_DEL, _buttonDel)
+    END_DDX_MAP()
+
 	LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+
+protected:
+    CBitmapButton _buttonAdd;
+    CBitmapButton _buttonDel;
 };
 
 #endif // __GUI_MAIN_DLG_H__
