@@ -221,6 +221,10 @@
 					Name="mixins"
 					>
 					<File
+						RelativePath=".\source\gui\mixins\closable_dlg.h"
+						>
+					</File>
+					<File
 						RelativePath=".\source\gui\mixins\wnd_icon.h"
 						>
 					</File>

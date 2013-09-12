@@ -20,16 +20,3 @@ LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 
 	return TRUE;
 }
-
-LRESULT CMainDlg::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-{
-    if (SC_CLOSE == wParam)
-    {
-        PostQuitMessage(WM_QUIT);
-    }
-
-    // Process default action
-    bHandled = FALSE;
-
-    return 0;
-}
