@@ -44,6 +44,9 @@ public:
     LRESULT OnAdd(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
     LRESULT OnDelete(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
 
+    // Helper function
+    void AddRow(int nItem);
+
 protected:
     CCustomListCtrl _list;
 };

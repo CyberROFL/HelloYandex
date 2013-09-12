@@ -12,9 +12,10 @@
 #include "resource/resource.h"
 #include "main_dlg.h"
 
-#include <stdlib.h> // srand, rand
+#include <stdlib.h> // rand
 #include <time.h>
 
+// Global icon names
 LPTSTR g_lpszNames[3] = { _TEXT("Поиск"), _TEXT("Диск"), _TEXT("Деньги")};
 
 LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
@@ -24,37 +25,28 @@ LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 
 	CenterWindow();
 
+    // Initialize random generator
+    srand(static_cast<unsigned int>(time(NULL)));
+
+    // Load button icons
     CButton buttonAdd = GetDlgItem(IDADD);
     CButton buttonDel = GetDlgItem(IDDEL);
 
     buttonAdd.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_ADD, SM_CXSMICON, SM_CYSMICON));
     buttonDel.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_DEL, SM_CXSMICON, SM_CYSMICON));
 
+    // Initialize list with 4 columns...
     _list.SubclassWindow(GetDlgItem(IDC_LIST));
-    // Initialize with 4 columns and 5 rows
     _list.AddColumn(_TEXT("Column 1"), 0);
     _list.AddColumn(_TEXT("Column 2"), 1);
     _list.AddColumn(_TEXT("Column 3"), 2);
     _list.AddColumn(_TEXT("Column 4"), 3);
 
-    // Initialize random generator
-    srand(static_cast<unsigned int>(time(NULL)));
-
+    // ... and 5 rows
     for (int i = 0; i < 5; ++i)
     {
-        for (int j = 0; j < 4; ++j)
-        {
-            CCustomListCtrl::Item item;
-
-            int magic = rand() % 3;
-
-            item.bText = rand() % 2;
-            item.hBmp  = LoadBitmap(_Module.GetResourceInstance(),
-                MAKEINTRESOURCE(IDB_IMG_BASE + magic));
-            item.lpszText = g_lpszNames[magic];
-
-            _list.AddItem(i, j, item);
-        }
+        // Add row with random content
+        AddRow(i);
     }
     _list.Update();
 
@@ -67,22 +59,12 @@ LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 LRESULT CMainDlg::OnAdd(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
 {
     int nItem = _list.GetSelectedIndex();
-
     nItem = (-1 == nItem) ? _list.GetItemCount() : nItem + 1;
 
-    for (int j = 0; j < 4; ++j)
-    {
-        CCustomListCtrl::Item item;
+    // Add row with random content
+    AddRow(nItem);
 
-        int magic = rand() % 3;
-
-        item.bText = rand() % 2;
-        item.hBmp  = LoadBitmap(_Module.GetResourceInstance(),
-            MAKEINTRESOURCE(IDB_IMG_BASE + magic));
-        item.lpszText = g_lpszNames[magic];
-
-        nItem = _list.AddItem(nItem, j, item);
-    }
+    // Update list
     _list.Update();
     _list.EnsureVisible(nItem, FALSE);
 
@@ -100,4 +82,28 @@ LRESULT CMainDlg::OnDelete(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHand
     }
 
     return 0;
+}
+
+void CMainDlg::AddRow(int nItem)
+{
+    for (int j = 0; j < 4; ++j)
+    {
+        CCustomListCtrl::Item item;
+
+        // Magic number for text/bmp selection
+        int magic = rand() % 3;
+
+        // Set text/bmp
+        item.bText = rand() % 2;
+
+        // Load bitmap & text
+        item.hBmp  = LoadBitmap(
+            _Module.GetResourceInstance(),
+            MAKEINTRESOURCE(IDB_IMG_BASE + magic));
+
+        item.lpszText = g_lpszNames[magic];
+
+        // Add to list
+        nItem = _list.AddItem(nItem, j, item);
+    }
 }

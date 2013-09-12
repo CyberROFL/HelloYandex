@@ -63,7 +63,7 @@ IDI_DEL                 ICON                    "icon\\main\\del.ico"
 //
 
 IDD_MAIN DIALOGEX 0, 0, 350, 200
-STYLE DS_SETFONT | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Hello, Yandex!"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
@@ -98,8 +98,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,1,0,0
- PRODUCTVERSION 0,1,0,0
+ FILEVERSION 0,2,0,0
+ PRODUCTVERSION 0,2,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -115,12 +115,12 @@ BEGIN
         BLOCK "080004b0"
         BEGIN
             VALUE "FileDescription", "Тестовая программа"
-            VALUE "FileVersion", "0, 1, 0, 0"
+            VALUE "FileVersion", "0, 2, 0, 0"
             VALUE "InternalName", "HelloYandex"
             VALUE "LegalCopyright", "Ilnaz Nizametdinov (c) 2013"
             VALUE "OriginalFilename", "HelloYandex.exe"
             VALUE "ProductName", "HelloYandex"
-            VALUE "ProductVersion", "0, 1, 0, 0"
+            VALUE "ProductVersion", "0, 2, 0, 0"
         END
     END
     BLOCK "VarFileInfo"

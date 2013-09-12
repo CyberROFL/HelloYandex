@@ -28,6 +28,7 @@ protected:
     typedef std::vector<Item> column_type;
     typedef std::vector<column_type> content_type;
 
+    // Icon width & height
     static const int _iconSize = 32;
 
 public:
@@ -86,7 +87,7 @@ public:
 
         dc.SaveDC();
         {
-            RECT* rc = &lpDrawItemStruct->rcItem; // alias
+            RECT* rc = &(lpDrawItemStruct->rcItem); // alias
 
             // Clear area
             dc.FillRect(rc, COLOR_WINDOW);
@@ -125,13 +126,9 @@ public:
         CDCHandle dc = lpDrawItemStruct->hDC;
         dc.SaveDC();
         {
-            CDC dcMem;
-            dcMem.CreateCompatibleDC(dc);
-
             if (_content[nSubItem][nItem].bText)
             {
                 // Draw text
-
                 int width = GetStringWidth(_content[nSubItem][nItem].lpszText);
 
                 TEXTMETRIC tm = { 0 };
@@ -146,7 +143,9 @@ public:
             else
             {
                 // Draw bitmap
+                CDC dcMem;
 
+                dcMem.CreateCompatibleDC(dc);
                 dcMem.SelectBitmap(_content[nSubItem][nItem].hBmp);
 
                 // Aplha-blend function
