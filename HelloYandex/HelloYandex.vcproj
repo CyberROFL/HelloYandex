@@ -221,7 +221,7 @@
 					Name="mixins"
 					>
 					<File
-						RelativePath=".\source\gui\mixins\closable_dlg.h"
+						RelativePath=".\source\gui\mixins\dialog_close.h"
 						>
 					</File>
 					<File

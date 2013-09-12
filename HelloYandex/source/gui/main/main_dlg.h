@@ -11,7 +11,7 @@
 #define __GUI_MAIN_DLG_H__
 
 #include "gui/mixins/wnd_icon.h"
-#include "gui/mixins/closable_dlg.h"
+#include "gui/mixins/dialog_close.h"
 
 class CMainDlg : public CDialogImpl<CMainDlg>,
                  public CWindowIcon<CMainDlg, IDI_MAIN>,
