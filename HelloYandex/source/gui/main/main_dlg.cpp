@@ -19,19 +19,21 @@ LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 
 	CenterWindow();
 
-    _buttonAdd = GetDlgItem(IDC_ADD);
-    _buttonDel = GetDlgItem(IDC_DEL);
+    CButton buttonAdd = GetDlgItem(IDADD);
+    CButton buttonDel = GetDlgItem(IDDEL);
 
-    _buttonAdd.SetIcon((HICON)::LoadImage(
-        _Module.GetResourceInstance(),
-        MAKEINTRESOURCE(IDI_ADD), IMAGE_ICON,
-        16, 16,
-        LR_LOADTRANSPARENT | LR_LOADMAP3DCOLORS));
-    _buttonDel.SetIcon((HICON)::LoadImage(
-        _Module.GetResourceInstance(),
-        MAKEINTRESOURCE(IDI_DEL), IMAGE_ICON,
-        16, 16,
-        LR_LOADTRANSPARENT | LR_LOADMAP3DCOLORS));
+    buttonAdd.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_ADD, SM_CXSMICON, SM_CYSMICON));
+    buttonDel.SetIcon(LoadImage<HICON, IMAGE_ICON>(IDI_DEL, SM_CXSMICON, SM_CYSMICON));
 
     return TRUE;
+}
+
+LRESULT CMainDlg::OnAdd(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
+{
+    return 0;
+}
+
+LRESULT CMainDlg::OnDelete(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
+{
+    return 0;
 }

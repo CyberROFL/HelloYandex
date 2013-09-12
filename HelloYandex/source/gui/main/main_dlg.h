@@ -26,21 +26,21 @@ public:
 
 	BEGIN_MSG_MAP(CMainDlg)
 		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
+        COMMAND_ID_HANDLER(IDADD, OnAdd)
+        COMMAND_ID_HANDLER(IDDEL, OnDelete)
         CHAIN_MSG_MAP(CDialogCloseBase)
         CHAIN_MSG_MAP(CDialogResizeBase)
 	END_MSG_MAP()
 
     BEGIN_DLGRESIZE_MAP(CMainDlg)
         DLGRESIZE_CONTROL(IDC_LIST, DLSZ_SIZE_X | DLSZ_SIZE_Y)
-        DLGRESIZE_CONTROL(IDC_ADD, DLSZ_MOVE_Y)
-        DLGRESIZE_CONTROL(IDC_DEL, DLSZ_MOVE_Y)
+        DLGRESIZE_CONTROL(IDADD, DLSZ_MOVE_Y)
+        DLGRESIZE_CONTROL(IDDEL, DLSZ_MOVE_Y)
     END_DLGRESIZE_MAP()
 
-	LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-
-protected:
-    CButton _buttonAdd;
-    CButton _buttonDel;
+    LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+    LRESULT OnAdd(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
+    LRESULT OnDelete(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
 };
 
 #endif // __GUI_MAIN_DLG_H__
