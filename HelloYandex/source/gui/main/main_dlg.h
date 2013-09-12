@@ -18,7 +18,6 @@ class CMainDlg : public CDialogImpl<CMainDlg>,
                  public CDialogClose<CMainDlg>,
                  public CDialogResize<CMainDlg>
 {
-    typedef CWindowIcon<CMainDlg, IDI_MAIN> CWindowIconBase;
     typedef CDialogClose<CMainDlg> CDialogCloseBase;
     typedef CDialogResize<CMainDlg> CDialogResizeBase;
 
@@ -38,7 +37,6 @@ public:
     END_DLGRESIZE_MAP()
 
 	LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-    LRESULT OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 };
 
 #endif // __GUI_MAIN_DLG_H__

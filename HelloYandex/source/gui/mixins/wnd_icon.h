@@ -14,11 +14,7 @@ template <class T, UINT nResID>
 class CWindowIcon
 {
 public:
-    BEGIN_MSG_MAP(CWindowIcon)
-        MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
-    END_MSG_MAP()
-
-    LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+    void WindowIcon_Init()
     {
         T* _this = static_cast<T*>(this);
 
@@ -35,8 +31,6 @@ public:
             ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON),
             LR_DEFAULTCOLOR);
         _this->SetIcon(hIconSmall, FALSE);
-
-        return TRUE;
     }
 };
 

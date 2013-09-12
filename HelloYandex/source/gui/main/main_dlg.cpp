@@ -14,7 +14,7 @@
 
 LRESULT CMainDlg::OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-    CWindowIconBase::OnInitDialog(uMsg, wParam, lParam, bHandled);
+    WindowIcon_Init();
     DlgResize_Init();
 
 	CenterWindow();
