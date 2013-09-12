@@ -22,7 +22,6 @@
 extern CAppModule _Module;
 
 #include <atlwin.h>
-
 #include <atlframe.h>
 #include <atlctrls.h>
 #include <atldlgs.h>
